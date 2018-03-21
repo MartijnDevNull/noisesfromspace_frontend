@@ -8,9 +8,13 @@ body {
   height: 100%;
 }
 
+video {
+  pointer-events: none;
+}
+
 body {
   background-color: #f4f4f4;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 ul {
@@ -197,7 +201,7 @@ nav {
     }
 
     .gallery-cover {
-      height: 50%;
+      height: 100%;
       width: auto;
       max-width: 50%;
     }
