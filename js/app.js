@@ -29,13 +29,14 @@ function onPlayerStateChange(event) {
   }
 }
 
-var app = new Vue({
+new Vue({
   el: "#app",
   data: {
     playing: false,
+    stream: ""
   },
   methods: {
-    playingToggle: function(event) {
+    playingToggle: function (event) {
       if (this.playing) {
         player.pauseVideo();
         this.playing = !this.playing;
@@ -45,6 +46,38 @@ var app = new Vue({
         this.playing = !this.playing;
         event.target.innerText = "pause";
       }
+    }
+  }
+});
+
+Vue.component('cards', {
+  template: '#cardOverview',
+  data: function () {
+    return {
+      stream: []
+    }
+  },
+
+  ready: function () {
+    this.getStream();
+  },
+
+  methods: {
+    fetchCampaigns: function () {
+      var campaigns = [];
+      this.$http.get('/retention/getCampaigns')
+        .success(function (campaigns) {
+          this.$set('campaigns', campaigns);
+
+        })
+        .error(function (err) {
+          campaigns.log(err);
+        });
+    },
+    getStream: function (resource) {
+      this.$http.get("http://127.0.0.1:5000/stream").then((response) => {
+        this.$set("stream", response);
+      });
     }
   }
 });

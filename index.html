@@ -46,7 +46,7 @@
 
     <!-- Iframe for YouTube -->
     <div id="player"></div>
-    
+
     <!-- Gallery -->
     <div id="portfolio" class="section gray">
       <div class="container">
@@ -54,20 +54,34 @@
           <div class="col l4 m6 s12 gallery-item gallery-expand gallery-filter polygon">
             <div class="gallery-curve-wrapper">
               <a class="gallery-cover gray">
-                <img src="img/cover_test_1.jpg" alt="placeholder">
+                <img src="img/cover_test_3.jpg" alt="placeholder">
               </a>
               <div class="gallery-header">
-                <h4>Andrew Poppy: Goodbye Mr. G</h4>
+                <h4>Burial - Untrue / Full Album
+                </h4>
                 <p>
-                  Andrew Poppy, Goodbye Mr.G 1987, UK slowwwwwwwwwwwww
-
+                  Andrew Poppy, Goodbye Mr.G 1987 -
+                  <cards></cards>
                 </p>
               </div>
               <div class="gallery-body">
                 <div class="title-wrapper">
-                  <h3>Maze</h3>
-                  <span class="price">$11.99</span>
+                  <h3>Burial - Untrue / Full Album</h3>
+                  <span class="price">Martijn Boers</span>
                 </div>
+                <p class="description">
+                  <template id="cardOverview">
+                    <div class="row" v-for="card in stream">
+                      <h2>@{{card}}</h2>
+                    </div>
+                  </template>
+                </p>
+                <p class="description">
+                  Literally venmo before they sold out, DIY heirloom forage polaroid offal yr pop-up selfies health goth. Typewriter scenester
+                  hammock truffaut meditation, squid before they sold out polaroid portland tousled taxidermy vice. Listicle
+                  butcher thundercats, taxidermy pitchfork next level roof party crucifix narwhal kinfolk you probably haven't
+                  heard of them portland small batch.
+                </p>
                 <p class="description">
                   Literally venmo before they sold out, DIY heirloom forage polaroid offal yr pop-up selfies health goth. Typewriter scenester
                   hammock truffaut meditation, squid before they sold out polaroid portland tousled taxidermy vice. Listicle
@@ -82,36 +96,7 @@
               </div>
             </div>
           </div>
-
-          <div class="col l4 m6 s12 gallery-item gallery-expand gallery-filter polygon">
-            <div class="gallery-curve-wrapper">
-              <a class="gallery-cover gray">
-                <img src="img/cover_test_2.jpg" alt="placeholder">
-              </a>
-              <div class="gallery-header">
-                <h4>Lizzy Mercier Descloux - Slipped Disc</h4>
-                <p>Lizzy forever</p>
-              </div>
-              <div class="gallery-body">
-                <div class="title-wrapper">
-                  <h3>Lizzy Mercier Descloux - Slipped Disc</h3>
-                  <span class="price">Kaan Karahisarli</span>
-                </div>
-                <p class="description">
-                  Literally venmo before they sold out, DIY heirloom forage polaroid offal yr pop-up selfies health goth. Typewriter scenester
-                  hammock truffaut meditation, squid before they sold out polaroid portland tousled taxidermy vice. Listicle
-                  butcher thundercats, taxidermy pitchfork next level roof party crucifix narwhal kinfolk you probably haven't
-                  heard of them portland small batch.</p>
-              </div>
-              <div class="gallery-action">
-                <a class="btn-floating btn-large waves-effect waves-light">
-                  <i class="material-icons">play_arrow</i>
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
-
       </div>
     </div>
 
