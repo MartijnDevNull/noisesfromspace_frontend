@@ -1,116 +1,93 @@
-(function($) {
-  $(function() {
+(function($){
+	$(function(){
+
+
     // Navbar
     $(".button-collapse").sideNav();
-    var categories = $("nav .categories-container");
+    var categories = $('nav .categories-container');
     if (categories.length) {
       categories.pushpin({ top: categories.offset().top });
-      var $links = categories.find("li");
+      var $links = categories.find('li');
       $links.each(function() {
         var $link = $(this);
-        $link.on("click", function() {
-          $links.removeClass("active");
-          $link.addClass("active");
-          var hash = $link
-            .find("a")
-            .first()[0]
-            .hash.substr(1);
-          var $galleryItems = $(".gallery .gallery-item");
+        $link.on('click', function() {
+          $links.removeClass('active');
+          $link.addClass('active');
+          var hash = $link.find('a').first()[0].hash.substr(1);
 
-          $galleryItems
+          $('.gallery .gallery-expand')
+            .addClass('gallery-filter')
             .stop()
-            .addClass("gallery-filter")
             .fadeIn(100);
-
-          if (hash !== "all") {
-            var $galleryFilteredOut = $galleryItems.not("." + hash).not(".all");
-            $galleryFilteredOut.removeClass("gallery-filter").hide();
+          if (hash !== 'all') {
+            console.log($('.gallery .gallery-expand').not('.' + hash));
+            $('.gallery .gallery-expand').not('.' + hash)
+              .hide()
+              .removeClass('gallery-filter');
           }
 
           // transition layout
           $masonry.masonry({
-            transitionDuration: ".3s"
+            transitionDuration: '.3s'
           });
           // only animate on layout
-          $masonry.one("layoutComplete", function(event, items) {
+          $masonry.one( 'layoutComplete', function( event, items ) {
             $masonry.masonry({
               transitionDuration: 0
             });
           });
-          setTimeout(function() {
-            $masonry.masonry("layout");
-          }, 1000);
+          $masonry.masonry('layout');
         });
       });
     }
 
-    // Home
-    $(".carousel:not(.carousel-slider)").carousel({
+
+	  // Home
+	  $('.carousel').carousel({
       dist: 0,
       padding: 10
     });
-    $(".carousel.carousel-slider").carousel({
-      fullWidth: true,
-      indicators: true,
-      onCycleTo: function(el) {
-        $(".nav-background img").removeClass("active");
-        $(".nav-background img")
-          .eq(el.index())
-          .addClass("active");
-      }
-    });
 
-    // Masonry Grid
-    var $masonry = $(".gallery");
-    $masonry.masonry({
-      // set itemSelector so .grid-sizer is not used in layout
-      itemSelector: ".gallery-filter",
-      // use element for option
-      columnWidth: ".gallery-filter",
-      // no transitions
-      transitionDuration: 0
-    });
-    // layout Masonry after each image loads
-    $masonry.imagesLoaded(function() {
-      $masonry.masonry("layout");
-    });
-    $("a.filter").click(function(e) {
+
+    $('a.filter').click(function (e) {
       e.preventDefault();
     });
 
+
+
     // Contact Form Icon
     $("form .form-control").focus(function() {
-      $(this)
-        .siblings("label")
-        .first()
-        .children("i")
-        .first()
-        .css({ color: "#aaa", left: 0 });
+      $(this).siblings("label").first().children("i").first().css({"color": "#aaa", "left": 0});
     });
     $("form .form-control").blur(function() {
-      $(this)
-        .siblings("label")
-        .first()
-        .children("i")
-        .first()
-        .css({ color: "transparent", left: "-20px" });
+      $(this).siblings("label").first().children("i").first().css({"color": "transparent", "left": "-20px"});
     });
 
+
     var onShow = function(el) {
-      var carousel = el.find(".carousel.initialized");
+      var carousel = el.find('.carousel.initialized');
       carousel.carousel({
         dist: 0,
         padding: 10
       });
     };
-    $(".gallery-expand").galleryExpand({
+    $('.gallery-expand').galleryExpand({
       onShow: onShow
     });
 
-    $(".blog .gallery-expand").galleryExpand({
+    $('.blog .gallery-expand').galleryExpand({
       onShow: onShow,
-      fillScreen: true,
-      inDuration: 500
+      fillScreen: true
     });
-  }); // end of document ready
+
+    // Docs init
+    $('.gallery-expand.fill-screen').galleryExpand({
+      onShow: onShow,
+      fillScreen: true
+    });
+    var toc = $('.table-of-contents');
+    toc.pushpin({ top: toc.offset().top });
+    $('.scrollspy').scrollSpy();
+
+	}); // end of document ready
 })(jQuery); // end of jQuery name space
